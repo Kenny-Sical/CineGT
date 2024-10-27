@@ -38,6 +38,10 @@ namespace Usuarios
             if(ousuario != null)
             {
                 MessageBox.Show("Usuario encontrado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Menu form = new Menu();
+                form.Show();
+                this.Hide();
+                form.FormClosing += frm_closing;
             }
             else
             {
@@ -46,6 +50,13 @@ namespace Usuarios
                 txtclave.Text = "";
             }
 
+        }
+
+        private void frm_closing(object sender, FormClosingEventArgs e)
+        {
+            txtusuario.Text = "";
+            txtclave.Text = "";
+            this.Show();
         }
     }
 }

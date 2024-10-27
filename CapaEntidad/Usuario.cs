@@ -8,8 +8,11 @@ namespace CapaEntidad
 {
     public class Usuario
     {
-        public int IDUsuario { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public string NombreUsuario { get; set;}
+        public int IDUsuario { get; set; }
         public string Clave { get; set;}
+        public Rol oRol { get; set; }
     }
 }
