@@ -35,10 +35,11 @@ namespace Usuarios
         {
             List<Usuario> TEST = new CN_Usuario().Listar();
             Usuario ousuario = new CN_Usuario().Listar().Where(u => u.NombreUsuario == txtusuario.Text && u.Clave == txtclave.Text).FirstOrDefault();
+            
             if(ousuario != null)
             {
                 MessageBox.Show("Usuario encontrado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Menu form = new Menu();
+                Menu form = new Menu(ousuario);
                 form.Show();
                 this.Hide();
                 form.FormClosing += frm_closing;

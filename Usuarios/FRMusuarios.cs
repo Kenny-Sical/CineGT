@@ -1,0 +1,215 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Usuarios.Utilidades;
+using CapaEntidad;
+using CapaNegocio;
+using System.Security.Cryptography;
+
+namespace Usuarios
+{
+    public partial class FRMusuarios : Form
+    {
+        private CN_Usuario cnUsuario = new CN_Usuario();
+        private bool formularioAbierto = false;
+        private string contraseña = string.Empty;
+        public FRMusuarios()
+        {
+            InitializeComponent();
+            cnUsuario.OnUsuariosChanged += RecargarUsuarios;
+            this.FormClosed += FRMusuarios_FormClosed; // Suscribir al evento FormClosed
+        }
+
+
+        private void FRMusuarios_Load(object sender, EventArgs e)
+        {
+            formularioAbierto = true;
+            //Asignar los roles al comboboxrol
+            List<Rol> listarol = new CN_Rol().Listar();
+            foreach (Rol item in listarol)
+            {
+                cboRol.Items.Add(new OpcionCombo() { Valor = item.IdRol, Texto = item.Nombre});
+            }
+            cboRol.DisplayMember = "Texto";
+            cboRol.ValueMember = "Valor";
+            cboRol.SelectedIndex = 0;
+
+            //Mostrar las opciones de busqueda en el comboboxbusqueda
+            foreach (DataGridViewColumn columna in dgvdata.Columns)
+            {
+                if(columna.Visible == true && columna.Name != "btnseleccionar")
+                {
+                    cbobusqueda.Items.Add(new OpcionCombo() { Valor = columna.Name, Texto = columna.HeaderText });
+                }
+            }
+            cbobusqueda.DisplayMember = "Texto";
+            cbobusqueda.ValueMember = "Valor";
+            cbobusqueda.SelectedIndex = 0;
+            //Mostrar los valores en el datagridview
+            RecargarUsuarios();
+
+        }
+
+        private void btnguardar_Click(object sender, EventArgs e)
+        {
+            string mensaje = string.Empty;
+            string contraseñaencriptada = "";
+            if (txtclave.Text != "")
+            {
+                contraseñaencriptada = Encriptar.EncriptarSHA256(txtclave.Text);
+            }
+            else
+            {
+                contraseñaencriptada = contraseña;
+            }
+            Usuario objusuario = new Usuario()
+            {
+                IDUsuario = Convert.ToInt32(txtid.Text),
+                Nombre = txtNombre.Text,
+                Apellido = txtApellido.Text,
+                NombreUsuario = txtnombreusuario.Text,
+                Clave = contraseñaencriptada,
+                oRol = new Rol() { IdRol = Convert.ToInt32(((OpcionCombo)cboRol.SelectedItem).Valor), Nombre= ((OpcionCombo)cboRol.SelectedItem).Texto},
+            };
+
+            if (objusuario.IDUsuario == 0)
+            {
+
+                int IdUsuariogenerado = new CN_Usuario().Registrar(objusuario, out mensaje);
+                if (IdUsuariogenerado != 0)
+                {
+                    MessageBox.Show("Usuario ingresado correctamente");
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje);
+                }
+            }
+            else
+            {
+                bool Resultado = new CN_Usuario().Editar(objusuario, out mensaje);
+
+                if (Resultado)
+                {
+                    //DataGridViewRow row = dgvdata.Rows[Convert.ToInt32(txtindice.Text)];
+                    //row.Cells["Id"].Value = txtid.Text;
+                    //row.Cells["Nombre"].Value = txtNombre.Text;
+                    //row.Cells["Apellido"].Value = txtApellido.Text;
+                    //row.Cells["Usuario"].Value = txtnombreusuario.Text;
+                    //row.Cells["Clave"].Value = contraseña;
+                    //row.Cells["IdRol"].Value = ((OpcionCombo)cboRol.SelectedItem).Valor.ToString();
+                    //row.Cells["Rol"].Value = ((OpcionCombo)cboRol.SelectedItem).Texto.ToString();
+                    MessageBox.Show("Usuario Actualizado correctamente");
+                    Limpiar();
+                }
+                else { MessageBox.Show(mensaje); }
+            }
+        }
+        private void btneliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Limpiar()
+        {
+            txtindice.Text = "-1";
+            txtid.Text = "0";
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtnombreusuario.Text = "";
+            txtclave.Text = "";
+            txtconfirmarclave.Text = "";
+            cboRol.SelectedIndex = 0;
+            txtNombre.Select();
+        }
+        //Metodo para colocar imagen check
+        private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (e.ColumnIndex == 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+                var w = Properties.Resources.Check.Width;
+                var h = Properties.Resources.Check.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+                e.Graphics.DrawImage(Properties.Resources.Check, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            }
+        }
+        private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvdata.Columns[e.ColumnIndex].Name == "btnseleccionar")
+            {
+                int indice = e.RowIndex;
+
+                if(indice >= 0)
+                {
+                    txtindice.Text = indice.ToString();
+                    txtid.Text = dgvdata.Rows[indice].Cells["IdUsuario"].Value.ToString();
+                    txtNombre.Text = dgvdata.Rows[indice].Cells["Nombre"].Value.ToString();
+                    txtApellido.Text = dgvdata.Rows[indice].Cells["Apellido"].Value.ToString();
+                    txtnombreusuario.Text = dgvdata.Rows[indice].Cells["Usuario"].Value.ToString();
+                    contraseña = dgvdata.Rows[indice].Cells["Clave"].Value.ToString();
+
+                    foreach (OpcionCombo oc in cboRol.Items)
+                    {
+                        if (Convert.ToInt32(oc.Valor) == Convert.ToInt32(dgvdata.Rows[indice].Cells["IdRol"].Value))
+                        {
+                            int indice_combo = cboRol.Items.IndexOf(oc);
+                            cboRol.SelectedIndex = indice_combo;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        private void RecargarUsuarios()
+        {
+            if (!formularioAbierto) return;
+
+            if (dgvdata.InvokeRequired)
+            {
+                dgvdata.Invoke((MethodInvoker)delegate { RecargarUsuariosEnUI(); });
+            }
+            else
+            {
+                RecargarUsuariosEnUI();
+            }
+        }
+
+        private void RecargarUsuariosEnUI()
+        {
+            if (!formularioAbierto || dgvdata.IsDisposed) return;
+
+            dgvdata.Rows.Clear();
+            List<Usuario> listausuario = cnUsuario.Listar();
+            foreach (Usuario item in listausuario)
+            {
+                dgvdata.Rows.Add(new object[] {
+                "", item.IDUsuario, item.NombreUsuario, item.Nombre, item.Apellido,
+                item.Clave, item.oRol.IdRol, item.oRol.Nombre
+            });
+            }
+        }
+        private void FRMusuarios_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Detener el monitoreo de cambios en usuarios
+            cnUsuario.DetenerTableDependency();
+            formularioAbierto = false;
+        }
+
+        private void btnlimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+    }
+}

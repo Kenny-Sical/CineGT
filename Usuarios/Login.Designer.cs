@@ -71,7 +71,7 @@
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 118;
             this.iconPictureBox1.Location = new System.Drawing.Point(61, 27);
-            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(141, 118);
             this.iconPictureBox1.TabIndex = 2;
@@ -80,7 +80,7 @@
             // txtusuario
             // 
             this.txtusuario.Location = new System.Drawing.Point(319, 47);
-            this.txtusuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtusuario.Margin = new System.Windows.Forms.Padding(4);
             this.txtusuario.Name = "txtusuario";
             this.txtusuario.Size = new System.Drawing.Size(287, 22);
             this.txtusuario.TabIndex = 3;
@@ -88,7 +88,7 @@
             // txtclave
             // 
             this.txtclave.Location = new System.Drawing.Point(319, 133);
-            this.txtclave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtclave.Margin = new System.Windows.Forms.Padding(4);
             this.txtclave.Name = "txtclave";
             this.txtclave.PasswordChar = '*';
             this.txtclave.Size = new System.Drawing.Size(287, 22);
@@ -126,7 +126,7 @@
             this.btningresar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btningresar.IconSize = 21;
             this.btningresar.Location = new System.Drawing.Point(319, 192);
-            this.btningresar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btningresar.Margin = new System.Windows.Forms.Padding(4);
             this.btningresar.Name = "btningresar";
             this.btningresar.Size = new System.Drawing.Size(112, 28);
             this.btningresar.TabIndex = 9;
@@ -148,7 +148,7 @@
             this.btncancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btncancelar.IconSize = 21;
             this.btncancelar.Location = new System.Drawing.Point(460, 192);
-            this.btncancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btncancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btncancelar.Name = "btncancelar";
             this.btncancelar.Size = new System.Drawing.Size(112, 28);
             this.btncancelar.TabIndex = 10;
@@ -174,7 +174,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
