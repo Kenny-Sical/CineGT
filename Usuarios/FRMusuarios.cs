@@ -11,19 +11,25 @@ using Usuarios.Utilidades;
 using CapaEntidad;
 using CapaNegocio;
 using System.Security.Cryptography;
+using Microsoft.AspNet.SignalR.Client;
 
 namespace Usuarios
 {
     public partial class FRMusuarios : Form
     {
         private CN_Usuario cnUsuario = new CN_Usuario();
+        private HubConnection hubConnection;
+        private IHubProxy usuarioHubProxy;
         private bool formularioAbierto = false;
         private string contraseña = string.Empty;
         public FRMusuarios()
         {
             InitializeComponent();
             cnUsuario.OnUsuariosChanged += RecargarUsuarios;
-            this.FormClosed += FRMusuarios_FormClosed; // Suscribir al evento FormClosed
+            hubConnection = new HubConnection("http://26.21.190.108:8080"); // Usa la IP de RadminVPN
+            usuarioHubProxy = hubConnection.CreateHubProxy("UsuarioHub");
+            usuarioHubProxy.On("ActualizarUsuarios", () => RecargarUsuarios());
+            hubConnection.Start().Wait();
         }
 
 
@@ -195,6 +201,7 @@ namespace Usuarios
         {
             if (!formularioAbierto) return;
 
+            // Este método se ejecutará en respuesta a la notificación de SignalR
             if (dgvdata.InvokeRequired)
             {
                 dgvdata.Invoke((MethodInvoker)delegate { RecargarUsuariosEnUI(); });
@@ -210,20 +217,18 @@ namespace Usuarios
             if (!formularioAbierto || dgvdata.IsDisposed) return;
 
             dgvdata.Rows.Clear();
-            List<Usuario> listausuario = cnUsuario.Listar();
+            List<Usuario> listausuario = cnUsuario.Listar();  // Obtiene la lista actualizada desde la base de datos
             foreach (Usuario item in listausuario)
             {
                 dgvdata.Rows.Add(new object[] {
-                "", item.IDUsuario, item.NombreUsuario, item.Nombre, item.Apellido,
-                item.Clave, item.oRol.IdRol, item.oRol.Nombre
-            });
+            "", item.IDUsuario, item.NombreUsuario, item.Nombre, item.Apellido,
+            item.Clave, item.oRol.IdRol, item.oRol.Nombre
+        });
             }
         }
         private void FRMusuarios_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Detener el monitoreo de cambios en usuarios
-            cnUsuario.DetenerTableDependency();
-            formularioAbierto = false;
+            hubConnection.Stop();
         }
 
         private void btnlimpiar_Click(object sender, EventArgs e)

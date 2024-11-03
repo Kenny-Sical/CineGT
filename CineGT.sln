@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaNegocio", "CapaNegocio\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDatos", "CapaDatos\CapaDatos.csproj", "{86F5FA19-F756-41BD-947F-CF40FF3E9FA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR", "SignalR\SignalR.csproj", "{FD4E89F5-F6B8-426E-9A2D-B66AA041F894}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{86F5FA19-F756-41BD-947F-CF40FF3E9FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86F5FA19-F756-41BD-947F-CF40FF3E9FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86F5FA19-F756-41BD-947F-CF40FF3E9FA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4E89F5-F6B8-426E-9A2D-B66AA041F894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4E89F5-F6B8-426E-9A2D-B66AA041F894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4E89F5-F6B8-426E-9A2D-B66AA041F894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4E89F5-F6B8-426E-9A2D-B66AA041F894}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

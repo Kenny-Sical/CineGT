@@ -6,18 +6,28 @@ using System.Text;
 using System.Threading.Tasks;
 using CapaDatos;
 using CapaEntidad;
+using Microsoft.AspNet.SignalR.Client;
 
 namespace CapaNegocio
 {
     public class CN_Usuario
     {
         private CD_Usuario objcd_usuario = new CD_Usuario();
+        private HubConnection hubConnection;
+        private IHubProxy usuarioHubProxy;
+        // Evento para notificar cambios en usuarios
         public event Action OnUsuariosChanged;
-
         public CN_Usuario()
         {
-            // Suscribir al evento de cambio en CapaDatos
-            objcd_usuario.OnUsuariosChanged += NotifyUsuariosChanged;
+            // Configuración de la conexión a SignalR
+            hubConnection = new HubConnection("http://26.21.190.108:8080"); // IP de RadminVPN
+            usuarioHubProxy = hubConnection.CreateHubProxy("UsuarioHub");
+
+            // Suscribirse al evento de cambio en SignalR
+            usuarioHubProxy.On("ActualizarUsuarios", () => NotifyUsuariosChanged());
+
+            // Iniciar la conexión con SignalR
+            hubConnection.Start().Wait();
         }
         public List<Usuario> Listar()
         {
@@ -99,10 +109,6 @@ namespace CapaNegocio
         {
             // Notificar a la capa de presentación
             OnUsuariosChanged?.Invoke();
-        }
-        public void DetenerTableDependency()
-        {
-            objcd_usuario.DetenerTableDependency();
         }
     }
 }

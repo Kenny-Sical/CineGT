@@ -11,16 +11,19 @@ using System.Security.Claims;
 using TableDependency.SqlClient;
 using TableDependency.SqlClient.Base.EventArgs;
 using TableDependency.SqlClient.Base.Enums;
+using Microsoft.AspNet.SignalR.Client;
 
 namespace CapaDatos
 {
     public class CD_Usuario
     {
-        public event Action OnUsuariosChanged;
-        private SqlTableDependency<Usuario> tableDependency;
+        private HubConnection hubConnection;
+        private IHubProxy usuarioHubProxy;
         public CD_Usuario()
         {
-            IniciarTableDependency();
+            hubConnection = new HubConnection("http://26.21.190.108:8080");
+            usuarioHubProxy = hubConnection.CreateHubProxy("UsuarioHub");
+            hubConnection.Start().Wait();
         }
         public List<Usuario> Listar()
         {
@@ -56,31 +59,6 @@ namespace CapaDatos
             }
             return lista;
         }
-        private void Usuarios_OnChanged(object sender, RecordChangedEventArgs<Usuario> e)
-        {
-            if (e.ChangeType == ChangeType.Insert || e.ChangeType == ChangeType.Update || e.ChangeType == ChangeType.Delete)
-            {
-                OnUsuariosChanged?.Invoke();  // Notifica a las capas superiores que los datos han cambiado
-            }
-        }
-        private void IniciarTableDependency()
-        {
-            var connectionString = Conexion.cadena;
-
-            // Inicializa `SqlTableDependency` para la tabla Usuarios
-            tableDependency = new SqlTableDependency<Usuario>(connectionString, "Usuario");
-            tableDependency.OnChanged += Usuarios_OnChanged;
-            tableDependency.OnError += TableDependency_OnError;
-            tableDependency.Start();
-        }
-        public void DetenerTableDependency()
-        {
-            if (tableDependency != null)
-            {
-                tableDependency.Stop();
-                tableDependency.Dispose();
-            }
-        }
         private void TableDependency_OnError(object sender, ErrorEventArgs e)
         {
             Console.WriteLine($"Error en SqlTableDependency: {e.Error.Message}");
@@ -110,7 +88,10 @@ namespace CapaDatos
                     idusuariogenerado = Convert.ToInt32(cmd.Parameters["IdUsuarioResultado"].Value);
                     Mensaje = cmd.Parameters["mensaje"].Value.ToString();
                 }
-
+                if (idusuariogenerado != 0)
+                {
+                    usuarioHubProxy.Invoke("NotificarCambioUsuarios");
+                }
             }
             catch(Exception ex)
             {
@@ -148,7 +129,10 @@ namespace CapaDatos
                     respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
                     Mensaje = cmd.Parameters["mensaje"].Value.ToString();
                 }
-
+                if (respuesta)
+                {
+                    usuarioHubProxy.Invoke("NotificarCambioUsuarios");
+                }
             }
             catch (Exception ex)
             {
@@ -180,7 +164,10 @@ namespace CapaDatos
                     respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
                     Mensaje = cmd.Parameters["mensaje"].Value.ToString();
                 }
-
+                if (respuesta)
+                {
+                    usuarioHubProxy.Invoke("NotificarCambioUsuarios");
+                }
             }
             catch (Exception ex)
             {
