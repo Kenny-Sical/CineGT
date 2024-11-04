@@ -19,7 +19,7 @@ namespace CapaDatos
         public CD_Usuario()
         {
             hubConnection = new HubConnection("http://26.21.190.108:8080");
-            usuarioHubProxy = hubConnection.CreateHubProxy("UsuarioHub");
+            usuarioHubProxy = hubConnection.CreateHubProxy("ConeccionHub");
             hubConnection.Start().Wait();
         }
         public List<Usuario> Listar()
@@ -83,7 +83,7 @@ namespace CapaDatos
                 }
                 if (idusuariogenerado != 0)
                 {
-                    usuarioHubProxy.Invoke("NotificarCambioUsuarios");
+                    usuarioHubProxy.Invoke("NotificarCambio");
                 }
             }
             catch(Exception ex)
@@ -124,7 +124,7 @@ namespace CapaDatos
                 }
                 if (respuesta)
                 {
-                    usuarioHubProxy.Invoke("NotificarCambioUsuarios");
+                    usuarioHubProxy.Invoke("NotificarCambio");
                 }
             }
             catch (Exception ex)
@@ -159,7 +159,7 @@ namespace CapaDatos
                 }
                 if (respuesta)
                 {
-                    usuarioHubProxy.Invoke("NotificarCambioUsuarios");
+                    usuarioHubProxy.Invoke("NotificarCambio");
                 }
             }
             catch (Exception ex)

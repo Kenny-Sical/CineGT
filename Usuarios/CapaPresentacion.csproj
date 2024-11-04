@@ -132,6 +132,9 @@
     <EmbeddedResource Include="FRMclasificacion.resx">
       <DependentUpon>FRMclasificacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FRMpelicula.resx">
+      <DependentUpon>FRMpelicula.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FRMusuarios.resx">
       <DependentUpon>FRMusuarios.cs</DependentUpon>
     </EmbeddedResource>

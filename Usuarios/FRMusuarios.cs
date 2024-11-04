@@ -26,10 +26,10 @@ namespace Usuarios
         public FRMusuarios()
         {
             InitializeComponent();
-            cnUsuario.OnUsuariosChanged += RecargarUsuarios;
+            cnUsuario.OnChanged += Recargar;
             hubConnection = new HubConnection("http://26.21.190.108:8080");
-            usuarioHubProxy = hubConnection.CreateHubProxy("UsuarioHub");
-            usuarioHubProxy.On("ActualizarUsuarios", () => RecargarUsuarios());
+            usuarioHubProxy = hubConnection.CreateHubProxy("ConeccionHub");
+            usuarioHubProxy.On("Actualizar", () => Recargar());
             hubConnection.Start().Wait();
         }
 
@@ -59,7 +59,7 @@ namespace Usuarios
             cbobusqueda.ValueMember = "Valor";
             cbobusqueda.SelectedIndex = 0;
             //Mostrar los valores en el datagridview
-            RecargarUsuarios();
+            Recargar();
 
         }
 
@@ -131,6 +131,7 @@ namespace Usuarios
                     if (respuesta)
                     {
                         MessageBox.Show("Usuario Eliminado");
+                        Limpiar();
                     }
                     else
                     {
@@ -195,22 +196,22 @@ namespace Usuarios
                 }
             }
         }
-        private void RecargarUsuarios()
+        private void Recargar()
         {
             if (!formularioAbierto) return;
 
             // Este método se ejecutará en respuesta a la notificación de SignalR
             if (dgvdata.InvokeRequired)
             {
-                dgvdata.Invoke((MethodInvoker)delegate { RecargarUsuariosEnUI(); });
+                dgvdata.Invoke((MethodInvoker)delegate { RecargarEnUI(); });
             }
             else
             {
-                RecargarUsuariosEnUI();
+                RecargarEnUI();
             }
         }
 
-        private void RecargarUsuariosEnUI()
+        private void RecargarEnUI()
         {
             if (!formularioAbierto || dgvdata.IsDisposed) return;
 

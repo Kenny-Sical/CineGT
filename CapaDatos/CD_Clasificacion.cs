@@ -17,7 +17,7 @@ namespace CapaDatos
         public CD_Clasificacion()
         {
             hubConnection = new HubConnection("http://26.21.190.108:8080");
-            usuarioHubProxy = hubConnection.CreateHubProxy("UsuarioHub");
+            usuarioHubProxy = hubConnection.CreateHubProxy("ConeccionHub");
             hubConnection.Start().Wait();
         }
         public List<Clasificacion> Listar()
@@ -74,7 +74,7 @@ namespace CapaDatos
                 }
                 if (Resultado != 0)
                 {
-                    usuarioHubProxy.Invoke("NotificarCambioUsuarios");
+                    usuarioHubProxy.Invoke("NotificarCambio");
                 }
             }
             catch (Exception ex)
@@ -111,7 +111,7 @@ namespace CapaDatos
                 }
                 if (Resultado)
                 {
-                    usuarioHubProxy.Invoke("NotificarCambioUsuarios");
+                    usuarioHubProxy.Invoke("NotificarCambio");
                 }
             }
             catch (Exception ex)
@@ -146,7 +146,7 @@ namespace CapaDatos
                 }
                 if (Resultado)
                 {
-                    usuarioHubProxy.Invoke("NotificarCambioUsuarios");
+                    usuarioHubProxy.Invoke("NotificarCambio");
                 }
             }
             catch (Exception ex)

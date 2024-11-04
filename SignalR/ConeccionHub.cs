@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace SignalR
 {
-    public class UsuarioHub:Hub
+    public class ConeccionHub: Hub
     {
-        public void NotificarCambioUsuarios()
+        public void NotificarCambio()
         {
-            Clients.All.ActualizarUsuarios();
+            Clients.All.Actualizar();
         }
     }
 }

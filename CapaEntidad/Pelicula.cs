@@ -11,7 +11,7 @@ namespace CapaEntidad
         public int IdPelicula { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set;}
-        public string Duracion { get; set; }
+        public TimeSpan Duracion { get; set; }
         public Clasificacion oClasificacion { get; set; }
     }
 }
