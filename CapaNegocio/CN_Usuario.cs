@@ -20,7 +20,7 @@ namespace CapaNegocio
         public CN_Usuario()
         {
             // Configuración de la conexión a SignalR
-            hubConnection = new HubConnection("http://26.21.190.108:8080"); // IP de RadminVPN
+            hubConnection = new HubConnection("http://26.21.190.108:8080");
             usuarioHubProxy = hubConnection.CreateHubProxy("UsuarioHub");
 
             // Suscribirse al evento de cambio en SignalR

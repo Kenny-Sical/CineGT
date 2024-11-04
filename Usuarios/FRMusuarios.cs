@@ -12,6 +12,7 @@ using CapaEntidad;
 using CapaNegocio;
 using System.Security.Cryptography;
 using Microsoft.AspNet.SignalR.Client;
+using System.Windows.Documents;
 
 namespace Usuarios
 {
@@ -26,7 +27,7 @@ namespace Usuarios
         {
             InitializeComponent();
             cnUsuario.OnUsuariosChanged += RecargarUsuarios;
-            hubConnection = new HubConnection("http://26.21.190.108:8080"); // Usa la IP de RadminVPN
+            hubConnection = new HubConnection("http://26.21.190.108:8080");
             usuarioHubProxy = hubConnection.CreateHubProxy("UsuarioHub");
             usuarioHubProxy.On("ActualizarUsuarios", () => RecargarUsuarios());
             hubConnection.Start().Wait();
@@ -66,9 +67,14 @@ namespace Usuarios
         {
             string mensaje = string.Empty;
             string contraseñaencriptada = "";
-            if (txtclave.Text != "")
+            if (txtclave.Text != "" && txtconfirmarclave.Text != "")
             {
                 contraseñaencriptada = Encriptar.EncriptarSHA256(txtclave.Text);
+                if (contraseñaencriptada != Encriptar.EncriptarSHA256(txtconfirmarclave.Text))
+                {
+                    MessageBox.Show("Las contraseña no fueron ingresadas correctamente la operacion no se ejecuto");
+                    return;
+                }
             }
             else
             {
@@ -104,14 +110,6 @@ namespace Usuarios
 
                 if (Resultado)
                 {
-                    //DataGridViewRow row = dgvdata.Rows[Convert.ToInt32(txtindice.Text)];
-                    //row.Cells["Id"].Value = txtid.Text;
-                    //row.Cells["Nombre"].Value = txtNombre.Text;
-                    //row.Cells["Apellido"].Value = txtApellido.Text;
-                    //row.Cells["Usuario"].Value = txtnombreusuario.Text;
-                    //row.Cells["Clave"].Value = contraseña;
-                    //row.Cells["IdRol"].Value = ((OpcionCombo)cboRol.SelectedItem).Valor.ToString();
-                    //row.Cells["Rol"].Value = ((OpcionCombo)cboRol.SelectedItem).Texto.ToString();
                     MessageBox.Show("Usuario Actualizado correctamente");
                     Limpiar();
                 }
@@ -225,10 +223,6 @@ namespace Usuarios
             item.Clave, item.oRol.IdRol, item.oRol.Nombre
         });
             }
-        }
-        private void FRMusuarios_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            hubConnection.Stop();
         }
 
         private void btnlimpiar_Click(object sender, EventArgs e)

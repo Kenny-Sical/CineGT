@@ -8,9 +8,6 @@ using System.Data.SqlClient;
 using CapaEntidad;
 using System.Collections;
 using System.Security.Claims;
-using TableDependency.SqlClient;
-using TableDependency.SqlClient.Base.EventArgs;
-using TableDependency.SqlClient.Base.Enums;
 using Microsoft.AspNet.SignalR.Client;
 
 namespace CapaDatos
@@ -58,10 +55,6 @@ namespace CapaDatos
                 }
             }
             return lista;
-        }
-        private void TableDependency_OnError(object sender, ErrorEventArgs e)
-        {
-            Console.WriteLine($"Error en SqlTableDependency: {e.Error.Message}");
         }
 
         public int Registrar(Usuario obj, out string Mensaje)
