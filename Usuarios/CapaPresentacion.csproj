@@ -107,6 +107,12 @@
     <Compile Include="FRMpelicula.Designer.cs">
       <DependentUpon>FRMpelicula.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRMsesiones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMsesiones.Designer.cs">
+      <DependentUpon>FRMsesiones.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRMusuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FRMpelicula.resx">
       <DependentUpon>FRMpelicula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMsesiones.resx">
+      <DependentUpon>FRMsesiones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRMusuarios.resx">
       <DependentUpon>FRMusuarios.cs</DependentUpon>

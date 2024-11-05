@@ -60,7 +60,6 @@ namespace Usuarios
             cbobusqueda.SelectedIndex = 0;
             //Mostrar los valores en el datagridview
             Recargar();
-
         }
 
         private void btnguardar_Click(object sender, EventArgs e)

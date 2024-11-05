@@ -33,16 +33,6 @@ namespace Usuarios
         private void FRMpelicula_Load(object sender, EventArgs e)
         {
             formularioAbierto = true;
-            //Asignar los roles al comboboxrol
-            List<Clasificacion> listarol = new CN_Clasificacion().Listar();
-            foreach (Clasificacion item in listarol)
-            {
-                cboClasificacion.Items.Add(new OpcionCombo() { Valor = item.IdClasificacion, Texto = item.Nombre });
-            }
-            cboClasificacion.DisplayMember = "Texto";
-            cboClasificacion.ValueMember = "Valor";
-            cboClasificacion.SelectedIndex = 0;
-
             //Mostrar las opciones de busqueda en el comboboxbusqueda
             foreach (DataGridViewColumn columna in dgvdata.Columns)
             {
@@ -54,6 +44,10 @@ namespace Usuarios
             cbobusqueda.DisplayMember = "Texto";
             cbobusqueda.ValueMember = "Valor";
             cbobusqueda.SelectedIndex = 0;
+            //Mostrar valores por defecto para el tiempo
+            cbohoras.SelectedIndex = 0;
+            cbominutos.SelectedIndex = 0;
+            cbosegundos.SelectedIndex = 0;
             //Mostrar los valores en el datagridview
             Recargar();
         }
@@ -85,6 +79,15 @@ namespace Usuarios
             item.Duracion, item.oClasificacion.IdClasificacion, item.oClasificacion.Nombre
         });
             }
+            //Asignar los roles al comboboxrol
+            List<Clasificacion> listaclasificacion = new CN_Clasificacion().Listar();
+            foreach (Clasificacion item in listaclasificacion)
+            {
+                cboClasificacion.Items.Add(new OpcionCombo() { Valor = item.IdClasificacion, Texto = item.Nombre });
+            }
+            cboClasificacion.DisplayMember = "Texto";
+            cboClasificacion.ValueMember = "Valor";
+            cboClasificacion.SelectedIndex = 0;
         }
 
         private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

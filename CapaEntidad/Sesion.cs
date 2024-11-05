@@ -9,9 +9,9 @@ namespace CapaEntidad
     public class Sesion
     {
         public int IdSesion { get; set; }
-        public string FechaHoraInicio { get; set; }
-        public bool Estado {  get; set; }
-        public string FechaHoraFin {  get; set; }
+        public DateTime FechaHoraInicio { get; set; }
+        public int Estado {  get; set; }
+        public DateTime FechaHoraFin {  get; set; }
         public Sala oSala { get; set; }
         public Pelicula oPelicula { get; set; }
     }

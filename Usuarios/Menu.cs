@@ -71,7 +71,7 @@ namespace Usuarios
 
         private void menuusuarios_Click(object sender, EventArgs e)
         {
-            AbrirFormulario((IconMenuItem)sender, new FRMusuarios());
+            AbrirFormulario(menumantenedor, new FRMusuarios());
         }
 
         private void submenuclasificacion_Click(object sender, EventArgs e)
@@ -82,6 +82,11 @@ namespace Usuarios
         private void submenupelicula_Click(object sender, EventArgs e)
         {
             AbrirFormulario(menumantenedor, new FRMpelicula());
+        }
+
+        private void submenusesion_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menumantenedor, new FRMsesiones());
         }
     }
 }
