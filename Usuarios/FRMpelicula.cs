@@ -80,6 +80,7 @@ namespace Usuarios
         });
             }
             //Asignar los roles al comboboxrol
+            cboClasificacion.Items.Clear();
             List<Clasificacion> listaclasificacion = new CN_Clasificacion().Listar();
             foreach (Clasificacion item in listaclasificacion)
             {

@@ -97,6 +97,7 @@ namespace Usuarios
             item.FechaHoraFin, item.oSala.IdSala, item.oSala.Nombre, item.Estado, item.oPelicula.oClasificacion.Nombre});
             }
             //Asignar las salas al comboboxrol
+            cboSala.Items.Clear();
             List<Sala> listaSala = new CN_Sala().Listar();
             foreach (Sala item in listaSala)
             {
@@ -106,6 +107,7 @@ namespace Usuarios
             cboSala.ValueMember = "Valor";
             cboSala.SelectedIndex = 0;
             //Asignar las Peliculas al comboboxrol
+            cboPelicula.Items.Clear();
             List<Pelicula> listaPelicula = new CN_Pelicula().Listar();
             foreach (Pelicula item in listaPelicula)
             {
