@@ -36,9 +36,6 @@
             this.submenupelicula = new FontAwesome.Sharp.IconMenuItem();
             this.submenusesion = new FontAwesome.Sharp.IconMenuItem();
             this.menuventas = new FontAwesome.Sharp.IconMenuItem();
-            this.menucompras = new FontAwesome.Sharp.IconMenuItem();
-            this.menuclientes = new FontAwesome.Sharp.IconMenuItem();
-            this.menuproveedores = new FontAwesome.Sharp.IconMenuItem();
             this.menureportes = new FontAwesome.Sharp.IconMenuItem();
             this.menuacercade = new FontAwesome.Sharp.IconMenuItem();
             this.Menutitulo = new System.Windows.Forms.MenuStrip();
@@ -58,9 +55,6 @@
             this.menuusuariosUser,
             this.menumantenedor,
             this.menuventas,
-            this.menucompras,
-            this.menuclientes,
-            this.menuproveedores,
             this.menureportes,
             this.menuacercade});
             this.Menu_.Location = new System.Drawing.Point(0, 56);
@@ -155,44 +149,7 @@
             this.menuventas.Size = new System.Drawing.Size(80, 74);
             this.menuventas.Text = "Ventas";
             this.menuventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // menucompras
-            // 
-            this.menucompras.AutoSize = false;
-            this.menucompras.IconChar = FontAwesome.Sharp.IconChar.DollyFlatbed;
-            this.menucompras.IconColor = System.Drawing.Color.Black;
-            this.menucompras.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menucompras.IconSize = 50;
-            this.menucompras.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menucompras.Name = "menucompras";
-            this.menucompras.Size = new System.Drawing.Size(80, 74);
-            this.menucompras.Text = "Compras";
-            this.menucompras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // menuclientes
-            // 
-            this.menuclientes.AutoSize = false;
-            this.menuclientes.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
-            this.menuclientes.IconColor = System.Drawing.Color.Black;
-            this.menuclientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuclientes.IconSize = 50;
-            this.menuclientes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menuclientes.Name = "menuclientes";
-            this.menuclientes.Size = new System.Drawing.Size(80, 74);
-            this.menuclientes.Text = "Clientes";
-            this.menuclientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // menuproveedores
-            // 
-            this.menuproveedores.IconChar = FontAwesome.Sharp.IconChar.AddressCard;
-            this.menuproveedores.IconColor = System.Drawing.Color.Black;
-            this.menuproveedores.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuproveedores.IconSize = 50;
-            this.menuproveedores.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menuproveedores.Name = "menuproveedores";
-            this.menuproveedores.Size = new System.Drawing.Size(84, 74);
-            this.menuproveedores.Text = "Proveedores";
-            this.menuproveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menuventas.Click += new System.EventHandler(this.menuventas_Click);
             // 
             // menureportes
             // 
@@ -316,9 +273,6 @@
         private FontAwesome.Sharp.IconMenuItem menuacercade;
         private FontAwesome.Sharp.IconMenuItem menumantenedor;
         private FontAwesome.Sharp.IconMenuItem menuventas;
-        private FontAwesome.Sharp.IconMenuItem menucompras;
-        private FontAwesome.Sharp.IconMenuItem menuproveedores;
-        private FontAwesome.Sharp.IconMenuItem menuclientes;
         private FontAwesome.Sharp.IconMenuItem menuusuariosAdmin;
         private System.Windows.Forms.Panel contenedor;
         private System.Windows.Forms.Label label2;

@@ -10,7 +10,7 @@ namespace CapaEntidad
     {
         public int IdTransaccion {  get; set; }
         public int NumeroTransaccion { get; set; }
-        public string FechaHora { get; set; }
+        public DateTime FechaHora { get; set; }
         public Accion oAccion { get; set; }
     }
 }

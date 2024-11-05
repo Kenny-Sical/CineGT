@@ -88,6 +88,7 @@
     <Compile Include="CN_Rol.cs" />
     <Compile Include="CN_Sala.cs" />
     <Compile Include="CN_Sesion.cs" />
+    <Compile Include="CN_Transaccion.cs" />
     <Compile Include="CN_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

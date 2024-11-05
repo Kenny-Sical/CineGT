@@ -48,8 +48,8 @@ namespace Usuarios
             {
                 MenuActivo.BackColor = Color.White;
             }
-            menu.BackColor = Color.Silver;
             MenuActivo = menu;
+            MenuActivo.BackColor = Color.Silver;
 
             // Cerrar el formulario activo si existe
             if (FormularioActivo != null)
@@ -71,7 +71,7 @@ namespace Usuarios
 
         private void menuusuarios_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(menumantenedor, new FRMusuarios());
+            AbrirFormulario(menuusuariosAdmin, new FRMusuarios());
         }
 
         private void submenuclasificacion_Click(object sender, EventArgs e)
@@ -87,6 +87,11 @@ namespace Usuarios
         private void submenusesion_Click(object sender, EventArgs e)
         {
             AbrirFormulario(menumantenedor, new FRMsesiones());
+        }
+
+        private void menuventas_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menuventas, new FRMventas());
         }
     }
 }
