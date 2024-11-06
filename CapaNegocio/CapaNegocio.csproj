@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CN_Asiento.cs" />
     <Compile Include="CN_Clasificacion.cs" />
     <Compile Include="CN_Pelicula.cs" />
     <Compile Include="CN_Rol.cs" />

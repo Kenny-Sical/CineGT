@@ -73,7 +73,7 @@
             this.menuusuariosAdmin.IconSize = 50;
             this.menuusuariosAdmin.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuusuariosAdmin.Name = "menuusuariosAdmin";
-            this.menuusuariosAdmin.Size = new System.Drawing.Size(152, 74);
+            this.menuusuariosAdmin.Size = new System.Drawing.Size(80, 74);
             this.menuusuariosAdmin.Text = "Usuarios";
             this.menuusuariosAdmin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.menuusuariosAdmin.Click += new System.EventHandler(this.menuusuarios_Click);

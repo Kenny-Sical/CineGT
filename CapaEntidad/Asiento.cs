@@ -12,6 +12,5 @@ namespace CapaEntidad
         public int NumeroAsiento { get; set; }
         public string FilaAsiento { get; set; }
         public Sala oSala { get; set; }
-        public bool Estado { get; set; }
     }
 }

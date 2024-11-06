@@ -91,7 +91,7 @@ namespace Usuarios
 
         private void menuventas_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(menuventas, new FRMventas());
+            AbrirFormulario(menuventas, new FRMventas(usuarioActual));
         }
     }
 }
