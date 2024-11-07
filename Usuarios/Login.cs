@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaNegocio;
 using CapaEntidad;
+using Usuarios.Utilidades;
 
 
 
@@ -33,16 +34,26 @@ namespace Usuarios
 
         private void btningresar_Click(object sender, EventArgs e)
         {
-            List<Usuario> TEST = new CN_Usuario().Listar();
-            Usuario ousuario = new CN_Usuario().Listar().Where(u => u.NombreUsuario == txtusuario.Text && u.Clave == txtclave.Text).FirstOrDefault();
-            
-            if(ousuario != null)
+            Usuario ousuario = null;
+            string usuarioIngresado = txtusuario.Text;
+            string claveEncriptada = Encriptar.EncriptarSHA256(txtclave.Text);
+            List<Usuario> listaUsuarios = new CN_Usuario().Listar();
+            foreach (Usuario usuario in listaUsuarios)
             {
-                MessageBox.Show("Usuario encontrado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Menu form = new Menu(ousuario);
-                form.Show();
-                this.Hide();
-                form.FormClosing += frm_closing;
+                if (usuario.NombreUsuario == usuarioIngresado && usuario.Clave == claveEncriptada)
+                {
+                    ousuario = usuario;
+                    break; // Rompe el ciclo una vez encontrado el usuario
+                }
+            }
+
+            if (ousuario != null)
+            {
+                string contraseñaencriptada = Encriptar.EncriptarSHA256(txtclave.Text);
+                    Menu form = new Menu(ousuario);
+                    form.Show();
+                    this.Hide();
+                    form.FormClosing += frm_closing;
             }
             else
             {

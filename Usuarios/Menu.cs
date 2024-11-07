@@ -17,12 +17,9 @@ namespace Usuarios
         private static Usuario usuarioActual;
         private static IconMenuItem MenuActivo = null;
         private static Form FormularioActivo = null;
-        public Menu(Usuario objUsuario = null)
+        public Menu(Usuario objUsuario)
         {
-            if (objUsuario == null) usuarioActual = new Usuario() { Nombre = "ADMIN DEFAULT", IDUsuario = 1, oRol = new Rol() { IdRol = 1} };
-            else
                 usuarioActual = objUsuario;
-
             InitializeComponent();
         }
 
@@ -32,10 +29,22 @@ namespace Usuarios
             {
                 menuusuariosAdmin.Visible = false;
                 menumantenedor.Visible = false;
+                menureportes.Visible = false;
+                menuventas.Visible = true;
+            }
+            else if (usuarioActual.oRol.IdRol == 3)
+            {
+                menuventas.Visible = false;
+                menuusuariosAdmin.Visible = false;
+                menumantenedor.Visible = false;
+                menureportes.Visible = true;
             }
             else
             {
-                menuusuariosUser.Visible = false;
+                menuventas.Visible = true;
+                menuusuariosAdmin.Visible = false;
+                menumantenedor.Visible = false;
+                menureportes.Visible = false;
             }
 
 
