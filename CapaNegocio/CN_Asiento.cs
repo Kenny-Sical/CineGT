@@ -41,5 +41,9 @@ namespace CapaNegocio
         {
             return objcd_Asiento.ListarOcupados(sesion, sala);
         }
+        public List<Asiento> ListarOcupadosPorTransaccion(int sesion, int sala, int transaccion)
+        {
+            return objcd_Asiento.ListarOcupadosPorTransaccion(sesion, sala, transaccion);
+        }
     }
 }

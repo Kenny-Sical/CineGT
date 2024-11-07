@@ -70,7 +70,7 @@ namespace Usuarios.Modales
             List<Sesion> listasesion = cnSesion.Listar();  // Obtiene la lista actualizada desde la base de datos
             foreach (Sesion item in listasesion)
             {
-                dgvdata.Rows.Add(new object[] { item.IdSesion, item.oSala.IdSala,item.oPelicula.Nombre, item.oPelicula.Duracion, item.FechaHoraInicio, item.oSala.Nombre});
+                dgvdata.Rows.Add(new object[] { item.IdSesion, item.oSala.IdSala, item.Estado,item.oPelicula.Nombre, item.oPelicula.Duracion, item.FechaHoraInicio, item.oSala.Nombre});
             }
         }
 
@@ -81,7 +81,8 @@ namespace Usuarios.Modales
 
             if(iRow >= 0 && icolum > 0)
             {
-                _Sesion = new Sesion() { IdSesion = Convert.ToInt32(dgvdata.Rows[iRow].Cells["IdSesion"].Value), 
+                _Sesion = new Sesion() { IdSesion = Convert.ToInt32(dgvdata.Rows[iRow].Cells["IdSesion"].Value),
+                Estado = Convert.ToInt32(dgvdata.Rows[iRow].Cells["Estado"].Value),
                 oPelicula = new Pelicula() {Nombre = dgvdata.Rows[iRow].Cells["NPelicula"].Value.ToString(), Duracion = TimeSpan.Parse(dgvdata.Rows[iRow].Cells["Duracion"].Value.ToString())},
                 FechaHoraInicio = DateTime.Parse(dgvdata.Rows[iRow].Cells["FechaHoraInicio"].Value.ToString()),
                 oSala = new Sala() {IdSala = Convert.ToInt32(dgvdata.Rows[iRow].Cells["IdSala"].Value), Nombre = dgvdata.Rows[iRow].Cells["Sala"].Value.ToString() }

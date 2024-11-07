@@ -101,6 +101,12 @@
     <Compile Include="FRMclasificacion.Designer.cs">
       <DependentUpon>FRMclasificacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRMdetalleventa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMdetalleventa.Designer.cs">
+      <DependentUpon>FRMdetalleventa.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRMpelicula.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,12 @@
     <Compile Include="Modales\mdAsiento.Designer.cs">
       <DependentUpon>mdAsiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\mdCambioAsiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdCambioAsiento.Designer.cs">
+      <DependentUpon>mdCambioAsiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modales\mdSesion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +167,9 @@
     <Compile Include="Utilidades\OpcionCombo.cs" />
     <EmbeddedResource Include="FRMclasificacion.resx">
       <DependentUpon>FRMclasificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMdetalleventa.resx">
+      <DependentUpon>FRMdetalleventa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRMpelicula.resx">
       <DependentUpon>FRMpelicula.cs</DependentUpon>
@@ -176,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdAsiento.resx">
       <DependentUpon>mdAsiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdCambioAsiento.resx">
+      <DependentUpon>mdCambioAsiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdSesion.resx">
       <DependentUpon>mdSesion.cs</DependentUpon>
@@ -217,6 +235,8 @@
   <ItemGroup>
     <None Include="Resources\Check.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\trash.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

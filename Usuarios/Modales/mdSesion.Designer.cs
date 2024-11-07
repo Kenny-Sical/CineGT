@@ -39,6 +39,7 @@
             this.dgvdata = new System.Windows.Forms.DataGridView();
             this.IdSesion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdSala = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NPelicula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Duracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaHoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -144,6 +145,7 @@
             this.dgvdata.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdSesion,
             this.IdSala,
+            this.Estado,
             this.NPelicula,
             this.Duracion,
             this.FechaHoraInicio,
@@ -180,6 +182,12 @@
             this.IdSala.Name = "IdSala";
             this.IdSala.ReadOnly = true;
             this.IdSala.Visible = false;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
             // 
             // NPelicula
             // 
@@ -244,6 +252,7 @@
         private System.Windows.Forms.DataGridView dgvdata;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdSesion;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdSala;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn NPelicula;
         private System.Windows.Forms.DataGridViewTextBoxColumn Duracion;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaHoraInicio;

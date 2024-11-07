@@ -93,5 +93,10 @@ namespace Usuarios
         {
             AbrirFormulario(menuventas, new FRMventas(usuarioActual));
         }
+
+        private void iconMenuItem1_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(submenudetalleventa, new FRMdetalleventa());
+        }
     }
 }

@@ -89,5 +89,41 @@ namespace CapaDatos
             }
             return lista;
         }
+        public List<Asiento> ListarOcupadosPorTransaccion(int sesion, int sala, int NumeroTransaccion)
+        {
+            List<Asiento> lista = new List<Asiento>();
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = "SELECT a.IDAsiento, a.NumeroAsiento, a.FilaAsiento, a.IDSala FROM Venta v JOIN Asiento a ON v.IDAsiento = a.IDAsiento JOIN Sesion s ON v.IDSesion = s.IDSesion AND a.IDSala = s.IDSala WHERE s.IDSesion = @IDSesion AND a.IDSala = @IDSala AND v.IDTransaccion = @NumeroTransaccion";
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@IDSesion", sesion);
+                    cmd.Parameters.AddWithValue("@IDSala", sala);
+                    cmd.Parameters.AddWithValue("@NumeroTransaccion", NumeroTransaccion);
+                    oconexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Asiento
+                            {
+                                IdAsiento = Convert.ToInt32(dr["IDAsiento"]),
+                                NumeroAsiento = Convert.ToInt32(dr["NumeroAsiento"]),
+                                FilaAsiento = dr["FilaAsiento"].ToString(),
+                                oSala = new Sala() { IdSala = Convert.ToInt32(dr["IDSala"]) },
+                            });
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lista = new List<Asiento>();
+                }
+            }
+            return lista;
+        }
     }
 }

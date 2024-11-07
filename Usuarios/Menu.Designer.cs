@@ -36,6 +36,7 @@
             this.submenupelicula = new FontAwesome.Sharp.IconMenuItem();
             this.submenusesion = new FontAwesome.Sharp.IconMenuItem();
             this.menuventas = new FontAwesome.Sharp.IconMenuItem();
+            this.submenudetalleventa = new FontAwesome.Sharp.IconMenuItem();
             this.menureportes = new FontAwesome.Sharp.IconMenuItem();
             this.menuacercade = new FontAwesome.Sharp.IconMenuItem();
             this.Menutitulo = new System.Windows.Forms.MenuStrip();
@@ -140,6 +141,8 @@
             // menuventas
             // 
             this.menuventas.AutoSize = false;
+            this.menuventas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.submenudetalleventa});
             this.menuventas.IconChar = FontAwesome.Sharp.IconChar.Tags;
             this.menuventas.IconColor = System.Drawing.Color.Black;
             this.menuventas.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -150,6 +153,16 @@
             this.menuventas.Text = "Ventas";
             this.menuventas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.menuventas.Click += new System.EventHandler(this.menuventas_Click);
+            // 
+            // submenudetalleventa
+            // 
+            this.submenudetalleventa.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.submenudetalleventa.IconColor = System.Drawing.Color.Black;
+            this.submenudetalleventa.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.submenudetalleventa.Name = "submenudetalleventa";
+            this.submenudetalleventa.Size = new System.Drawing.Size(184, 26);
+            this.submenudetalleventa.Text = "Detalle Venta";
+            this.submenudetalleventa.Click += new System.EventHandler(this.iconMenuItem1_Click);
             // 
             // menureportes
             // 
@@ -281,5 +294,6 @@
         private FontAwesome.Sharp.IconMenuItem submenupelicula;
         private FontAwesome.Sharp.IconMenuItem menuusuariosUser;
         private FontAwesome.Sharp.IconMenuItem submenusesion;
+        private FontAwesome.Sharp.IconMenuItem submenudetalleventa;
     }
 }

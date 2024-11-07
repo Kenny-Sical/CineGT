@@ -132,6 +132,32 @@ namespace Usuarios.Modales
         {
             return asientosseleccionados;
         }
+        public List<Asiento> SeleccionarAsientosAutomaticamente(int numeroDeAsientos)
+        {
+            // Obtener las listas de asientos
+            List<Asiento> listaAsientos = cnasiento.Listar(_sala);
+            List<Asiento> listaAsientosVendidos = cnasiento.ListarOcupados(_sesion, _sala);
+
+            // Filtrar los asientos disponibles (no vendidos)
+            var asientosDisponibles = listaAsientos
+                .Where(asiento => !listaAsientosVendidos.Any(vendido => vendido.IdAsiento == asiento.IdAsiento))
+                .OrderBy(asiento => asiento.FilaAsiento) // Ordenar si es necesario
+                .ThenBy(asiento => asiento.NumeroAsiento)
+                .ToList();
+
+            // Verificar que hay suficientes asientos disponibles
+            if (asientosDisponibles.Count < numeroDeAsientos)
+            {
+                MessageBox.Show("No hay suficientes asientos disponibles.");
+                return new List<Asiento>();
+            }
+
+            // Seleccionar los primeros 'numeroDeAsientos' asientos disponibles
+            var asientosSeleccionados = asientosDisponibles.Take(numeroDeAsientos).ToList();
+
+            return asientosSeleccionados;
+        }
+
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
