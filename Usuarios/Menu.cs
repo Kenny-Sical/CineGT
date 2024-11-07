@@ -98,5 +98,10 @@ namespace Usuarios
         {
             AbrirFormulario(submenudetalleventa, new FRMdetalleventa());
         }
+
+        private void menureportes_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menureportes, new FRMreportes(usuarioActual));
+        }
     }
 }

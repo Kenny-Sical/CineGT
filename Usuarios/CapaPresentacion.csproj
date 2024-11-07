@@ -113,6 +113,12 @@
     <Compile Include="FRMpelicula.Designer.cs">
       <DependentUpon>FRMpelicula.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRMreportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMreportes.Designer.cs">
+      <DependentUpon>FRMreportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRMsesiones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FRMpelicula.resx">
       <DependentUpon>FRMpelicula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMreportes.resx">
+      <DependentUpon>FRMreportes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRMsesiones.resx">
       <DependentUpon>FRMsesiones.cs</DependentUpon>

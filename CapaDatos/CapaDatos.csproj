@@ -87,6 +87,7 @@
     <Compile Include="CD_Asiento.cs" />
     <Compile Include="CD_Clasificacion.cs" />
     <Compile Include="CD_Pelicula.cs" />
+    <Compile Include="CD_Reporte.cs" />
     <Compile Include="CD_Rol.cs" />
     <Compile Include="CD_Sala.cs" />
     <Compile Include="CD_Sesion.cs" />

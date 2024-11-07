@@ -160,7 +160,7 @@
             this.submenudetalleventa.IconColor = System.Drawing.Color.Black;
             this.submenudetalleventa.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenudetalleventa.Name = "submenudetalleventa";
-            this.submenudetalleventa.Size = new System.Drawing.Size(184, 26);
+            this.submenudetalleventa.Size = new System.Drawing.Size(142, 22);
             this.submenudetalleventa.Text = "Detalle Venta";
             this.submenudetalleventa.Click += new System.EventHandler(this.iconMenuItem1_Click);
             // 
@@ -176,6 +176,7 @@
             this.menureportes.Size = new System.Drawing.Size(80, 74);
             this.menureportes.Text = "Reportes";
             this.menureportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menureportes.Click += new System.EventHandler(this.menureportes_Click);
             // 
             // menuacercade
             // 

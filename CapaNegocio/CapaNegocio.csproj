@@ -86,6 +86,7 @@
     <Compile Include="CN_Asiento.cs" />
     <Compile Include="CN_Clasificacion.cs" />
     <Compile Include="CN_Pelicula.cs" />
+    <Compile Include="CN_Reporte.cs" />
     <Compile Include="CN_Rol.cs" />
     <Compile Include="CN_Sala.cs" />
     <Compile Include="CN_Sesion.cs" />
