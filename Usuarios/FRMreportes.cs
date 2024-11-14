@@ -21,20 +21,29 @@ namespace Usuarios
             this.usuarioActual = usuarioActual;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
             DataTable reporte = null;
+
+            DateTime fechaHoraInicio = FechaInicio.Value.Date.Add(HoraI.Value.TimeOfDay);
+            DateTime fechaHoraFin = FechaFin.Value.Date.Add(HoraF.Value.TimeOfDay);
+
+            if (fechaHoraInicio > fechaHoraFin)
+            {
+                MessageBox.Show("La fecha y hora de inicio debe ser anterior a la fecha y hora de fin.");
+                return;
+            }
 
             // Determina el reporte seleccionado en el ComboBox
             switch (comboBox1.SelectedIndex)
             {
                 case 0: // Reporte 1
-                    reporte = reporteNegocio.ObtenerReporte1(FechaInicio.Value, FechaFin.Value, out mensaje);
+                    reporte = reporteNegocio.ObtenerReporte1(fechaHoraInicio, fechaHoraFin, out mensaje);
                     break;
 
                 case 1: // Reporte 2
-                    reporte = reporteNegocio.ObtenerReporte2(FechaInicio.Value, FechaFin.Value, out mensaje);
+                    reporte = reporteNegocio.ObtenerReporte2(fechaHoraInicio, fechaHoraFin, out mensaje);
                     break;
 
                 case 2: // Reporte 3
@@ -59,11 +68,11 @@ namespace Usuarios
                     break;
 
                 case 5: // Reporte 6
-                    reporte = reporteNegocio.ObtenerReporte6(FechaInicio.Value, FechaFin.Value, out mensaje);
+                    reporte = reporteNegocio.ObtenerReporte6(fechaHoraInicio, fechaHoraFin, out mensaje);
                     break;
 
                 case 6: // Reporte 7
-                    reporte = reporteNegocio.ObtenerReporte7(FechaInicio.Value, FechaFin.Value, out mensaje);
+                    reporte = reporteNegocio.ObtenerReporte7(fechaHoraInicio, fechaHoraFin, out mensaje);
                     break;
 
                 default:
@@ -81,7 +90,7 @@ namespace Usuarios
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             label5.Text = comboBox1.SelectedItem.ToString();
 
@@ -169,7 +178,7 @@ namespace Usuarios
                     textBox1.Visible = false; // Ejemplo de texto guía
                     txtSala.Visible = false;
                     break;
-                }
             }
+        }
     }
 }
