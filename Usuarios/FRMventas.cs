@@ -194,6 +194,7 @@ namespace Usuarios
                 MessageBox.Show("Debe ingresar campos en la venta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
             DataTable detalle_compra = new DataTable();
             detalle_compra.Columns.Add("TipoAsignacion", typeof(string));
             detalle_compra.Columns.Add("IdSesion", typeof(int));

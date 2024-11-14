@@ -49,11 +49,20 @@ namespace Usuarios
 
             if (ousuario != null)
             {
-                string contraseñaencriptada = Encriptar.EncriptarSHA256(txtclave.Text);
+                if (ousuario.oRol.IdRol != 2)
+                {
+                    string contraseñaencriptada = Encriptar.EncriptarSHA256(txtclave.Text);
                     Menu form = new Menu(ousuario);
                     form.Show();
                     this.Hide();
                     form.FormClosing += frm_closing;
+                }
+                else
+                {
+                    MessageBox.Show("El usuario actualmente se encuentra inactivo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    txtusuario.Text = "";
+                    txtclave.Text = "";
+                }
             }
             else
             {

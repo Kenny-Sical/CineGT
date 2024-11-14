@@ -88,7 +88,7 @@ namespace Usuarios
             }
             cboClasificacion.DisplayMember = "Texto";
             cboClasificacion.ValueMember = "Valor";
-            cboClasificacion.SelectedIndex = 0;
+            cboClasificacion.SelectedIndex = -1;
         }
 
         private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -169,7 +169,7 @@ namespace Usuarios
             cbohoras.SelectedIndex = 0;
             cbominutos.SelectedIndex = 0;
             cbosegundos.SelectedIndex = 0;
-            cboClasificacion.SelectedIndex = 0;
+            cboClasificacion.SelectedIndex = -1;
             txtNombre.Select();
         }
         private void btnguardar_Click(object sender, EventArgs e)

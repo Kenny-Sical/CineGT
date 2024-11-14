@@ -42,9 +42,10 @@ namespace Usuarios
             else
             {
                 menuventas.Visible = true;
-                menuusuariosAdmin.Visible = false;
-                menumantenedor.Visible = false;
+                menuusuariosAdmin.Visible = true;
+                menumantenedor.Visible = true;
                 menureportes.Visible = false;
+                menudatos.Visible = true;
             }
 
 

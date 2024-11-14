@@ -61,8 +61,8 @@ namespace Usuarios
         {
             txtindice.Text = "-1";
             txtid.Text = "0";
-            cboSala.SelectedIndex = 0;
-            cboPelicula.SelectedIndex = 0;
+            cboSala.SelectedIndex = -1;
+            cboPelicula.SelectedIndex = -1;
             cboEstado.SelectedIndex = 0;
             cbohoras.SelectedIndex = 0;
             cbominutos.SelectedIndex = 0;
@@ -105,7 +105,7 @@ namespace Usuarios
             }
             cboSala.DisplayMember = "Texto";
             cboSala.ValueMember = "Valor";
-            cboSala.SelectedIndex = 0;
+            cboSala.SelectedIndex = -1;
             //Asignar las Peliculas al comboboxrol
             cboPelicula.Items.Clear();
             List<Pelicula> listaPelicula = new CN_Pelicula().Listar();
@@ -115,7 +115,7 @@ namespace Usuarios
             }
             cboPelicula.DisplayMember = "Texto";
             cboPelicula.ValueMember = "Valor";
-            cboPelicula.SelectedIndex = 0;
+            cboPelicula.SelectedIndex = -1;
         }
         private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
