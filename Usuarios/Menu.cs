@@ -113,5 +113,10 @@ namespace Usuarios
         {
             AbrirFormulario(menureportes, new FRMreportes(usuarioActual));
         }
+
+        private void menudatos_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menudatos, new FRMdatos());
+        }
     }
 }

@@ -101,6 +101,12 @@
     <Compile Include="FRMclasificacion.Designer.cs">
       <DependentUpon>FRMclasificacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRMdatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMdatos.Designer.cs">
+      <DependentUpon>FRMdatos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRMdetalleventa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     <Compile Include="Utilidades\OpcionCombo.cs" />
     <EmbeddedResource Include="FRMclasificacion.resx">
       <DependentUpon>FRMclasificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMdatos.resx">
+      <DependentUpon>FRMdatos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRMdetalleventa.resx">
       <DependentUpon>FRMdetalleventa.cs</DependentUpon>

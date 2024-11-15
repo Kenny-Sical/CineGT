@@ -1,0 +1,6 @@
+BACKUP DATABASE [CINES] 
+TO DISK = N'C:\MEIA\CINE_FULL.bak' 
+WITH NOFORMAT, NOINIT, 
+NAME = N'Copia completa mensual', 
+STATS = 10;
+GO

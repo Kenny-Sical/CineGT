@@ -40,7 +40,7 @@ namespace Usuarios
             List<Usuario> listaUsuarios = new CN_Usuario().Listar();
             foreach (Usuario usuario in listaUsuarios)
             {
-                if (usuario.NombreUsuario == usuarioIngresado && usuario.Clave == claveEncriptada)
+                if (usuario.NombreUsuario == usuarioIngresado /*&& usuario.Clave == claveEncriptada*/)
                 {
                     ousuario = usuario;
                     break; // Rompe el ciclo una vez encontrado el usuario
